@@ -73,3 +73,18 @@ PA<-fire.cover %>%
 
 write_xlsx(PA, "Output/Data/L1_Presence_Absence_data.xlsx")
 
+
+####Save a version of the fires split by decade####
+
+
+PA_by_decade<-fire.cover %>% 
+  select(fractional_cover,PA,fire_year) %>% 
+  mutate(decade = case_when(fire_year <= 2001 ~ "1991-2001",
+                            fire_year <= 2011 & fire_year > 2001 ~ "2002-2011",
+                            fire_year > 2011 ~ "2012-2021"))
+
+
+write_csv(PA_by_decade, "Output/Data/L1_Presence_Absence_data_by_decade.csv")
+
+
+

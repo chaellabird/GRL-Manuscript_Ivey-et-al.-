@@ -54,3 +54,17 @@
 #This will be used in script 3
 write_csv(PA, "Output/Data/Presence_Absence_data.csv")
 
+
+####Save a version of the fires split by decade####
+
+
+PA_by_decade<-fire.cover %>% 
+  select(L3CODE,fractional_cover,PA,fire_year) %>% 
+ mutate(decade = case_when(fire_year <= 2001 ~ "1991-2001",
+                           fire_year < 2012 & fire_year >2001 ~ "2002-2011",
+                           fire_year >2011 ~ "2012-2021"))
+
+
+write_csv(PA_by_decade, "Output/Data/Presence_Absence_data_by_decade.csv")
+
+
